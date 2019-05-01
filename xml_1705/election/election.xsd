@@ -1,0 +1,139 @@
+<?xml version="1.0"?> 
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.unigoa.ac.in/election"            xmlns="http://www.unigoa.ac.in/election" elementFormDefault="qualified">
+ 
+<!-- partyListType+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+  <xs:simpleType name="partyidType"> 
+      <xs:restriction  base="xs:string">
+                <xs:pattern value="[a-z]{3}"/> 
+      </xs:restriction> 
+  </xs:simpleType>
+
+  <xs:complexType name="partyType">
+       <xs:simpleContent> 
+                 <xs:extension base="xs:string"> 
+                           <xs:attribute name="partyid" type="partyidType" use="required" /> 
+                 </xs:extension> 
+        </xs:simpleContent>
+  </xs:complexType>  
+
+  <xs:complexType name="party-listType"> 
+         <xs:sequence> 
+                 <xs:element name="party" type="partyType" minOccurs="0" maxOccurs="unbounded" />  
+         </xs:sequence> 
+  </xs:complexType> 
+
+  <!-- candidateListType+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+<xs:simpleType name="genderType"> 
+      <xs:restriction base="xs:string">
+                <xs:pattern value="M|F"/> 
+      </xs:restriction> 
+  </xs:simpleType>
+
+
+    <xs:simpleType name="ageType">
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="60"/>
+      </xs:restriction>
+    </xs:simpleType>
+
+  <xs:complexType name="flagType">
+       <xs:simpleContent> 
+                 <xs:extension base="xs:string"> 
+                           <xs:attribute name="gender" type="genderType" use="required"/>
+                 </xs:extension> 
+        </xs:simpleContent>  
+  </xs:complexType>
+
+    <xs:simpleType name="cnameType">
+      <xs:restriction base="xs:string">
+        <xs:pattern value="[A-Z]{1}([a-z])*"/>
+      </xs:restriction>
+    </xs:simpleType>
+
+
+  <xs:simpleType name="cidType"> 
+       <xs:restriction base="xs:string"> 
+                <xs:pattern value="[a-z]{1}"/> 
+       </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="cpartyType"> 
+       <xs:restriction base="xs:string"> 
+                <xs:pattern value="[a-z]{3}"/> 
+       </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="candidateType"> 
+     <xs:sequence> 
+             <xs:element name="age" type="ageType" minOccurs="0" maxOccurs="unbounded"/>
+             <xs:element name="flag" type="flagType" minOccurs="0" maxOccurs="unbounded"/>
+             <xs:element name="cname" type="cnameType" minOccurs="0" maxOccurs="unbounded"/>
+     </xs:sequence>
+                       <xs:attribute name="cid" type="cidType" use="required" />
+                       <xs:attribute name="cparty" type="cpartyType" use="required" />
+  </xs:complexType> 
+
+  <xs:complexType name="candidate-listType"> 
+         <xs:sequence> 
+              <xs:element name="candidate" type="candidateType" minOccurs="0" maxOccurs="unbounded"/>
+         </xs:sequence> 
+  </xs:complexType>
+
+  <!-- constituencyListType++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+  <xs:simpleType name="gidType"> 
+      <xs:restriction base="xs:string">
+                <xs:pattern value="[a-z]{2}"/> 
+      </xs:restriction> 
+  </xs:simpleType>
+
+  <xs:complexType name="nameType">
+       <xs:simpleContent> 
+                 <xs:extension base="xs:string"> 
+                           <xs:attribute name="gid" type="gidType" use="required"/>
+                 </xs:extension> 
+        </xs:simpleContent>  
+  </xs:complexType>
+ 
+  <xs:simpleType name="conidType"> 
+       <xs:restriction base="xs:string"> 
+                <xs:pattern value="[a-z]{2}"/> 
+       </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="votersType"> 
+       <xs:restriction base="xs:integer"> 
+                <xs:pattern value="[0-9]{6}"/> 
+       </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="constituencyType"> 
+     <xs:sequence> 
+             <xs:element name="name" type="nameType" minOccurs="0" maxOccurs="unbounded"/>
+     </xs:sequence>
+                       <xs:attribute name="conid" type="conidType" use="required" />
+                       <xs:attribute name="voters" type="votersType" use="required" />
+  </xs:complexType> 
+
+  <xs:complexType name="constituency-listType"> 
+         <xs:sequence> 
+              <xs:element name="constituency" type="constituencyType" minOccurs="0" maxOccurs="unbounded"/>
+         </xs:sequence> 
+  </xs:complexType>
+
+<!-- electionElement+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+  <xs:element name="election"> 
+         <xs:complexType> 
+                 <xs:sequence> 
+                        <xs:element name="party-list" type="party-listType"/> 
+                        <xs:element name="candidate-list" type="candidate-listType"/>   
+                        <xs:element name="constituency-list" type="constituency-listType"/>          
+                  </xs:sequence>
+         </xs:complexType>
+        
+  </xs:element>
+
+</xs:schema> 

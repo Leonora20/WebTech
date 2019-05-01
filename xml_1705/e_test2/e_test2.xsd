@@ -1,0 +1,60 @@
+<?xml version="1.0"?> 
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.unigoa.ac.in/e_test2"            xmlns="http://www.unigoa.ac.in/e_test2" elementFormDefault="qualified">
+ 
+<!-- partyListType+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+  <!-- constituencyListType+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+  <xs:simpleType name="gidType"> 
+      <xs:restriction base="xs:string">
+                <xs:pattern value="[a-z]{2}"/> 
+      </xs:restriction> 
+  </xs:simpleType>
+
+  <xs:complexType name="nameType">
+       <xs:simpleContent> 
+                 <xs:extension base="xs:string"> 
+                           <xs:attribute name="gid" type="gidType" use="required"/>
+                 </xs:extension> 
+        </xs:simpleContent>  
+  </xs:complexType>
+ 
+  <xs:simpleType name="conidType"> 
+       <xs:restriction base="xs:string"> 
+                <xs:pattern value="[a-z]{2}"/> 
+       </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="votersType"> 
+       <xs:restriction base="xs:integer"> 
+                <xs:pattern value="[0-9]{6}"/> 
+       </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="constituencyType"> 
+     <xs:sequence> 
+             <xs:element name="name" type="nameType" minOccurs="0" maxOccurs="unbounded"/>
+     </xs:sequence>
+                       <xs:attribute name="conid" type="conidType" use="required" />
+                       <xs:attribute name="voters" type="votersType" use="required" />
+  </xs:complexType> 
+
+  <xs:complexType name="constituency-listType"> 
+         <xs:sequence> 
+              <xs:element name="constituency" type="constituencyType" minOccurs="0" maxOccurs="unbounded"/>
+         </xs:sequence> 
+  </xs:complexType>
+
+<!-- electionElement+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+  <xs:element name="election"> 
+         <xs:complexType> 
+                 <xs:sequence> 
+                        <!--<xs:element name="party-list" type="party-listType"/>    -->
+                        <xs:element name="constituency-list" type="constituency-listType"/>           
+                  </xs:sequence>
+         </xs:complexType>
+        
+  </xs:element>
+
+</xs:schema> 

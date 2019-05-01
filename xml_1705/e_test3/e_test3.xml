@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+
+<election xmlns="http://www.unigoa.ac.in/e_test3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.unigoa.ac.in/e_test3 e_test3.xsd">
+
+	<candidate-list>
+		<candidate cid="a" cparty="bjp">
+			<age>30</age>
+			<flag gender="M" />
+			<cname>Alpha</cname>
+		</candidate>
+		<candidate cid="b" cparty="con">
+			<age>30</age>
+			<flag gender="M" />
+			<cname>Beta</cname>
+		</candidate>
+		<candidate cid="z" cparty="aap">
+			<age>30</age>
+			<flag gender="M" />
+			<cname>Zeta</cname>
+		</candidate>
+		<candidate cid="e" cparty="bjp">
+			<age>30</age>
+			<flag gender="M" />
+			<cname>Epsilon</cname>
+		</candidate>
+		<candidate cid="d" cparty="con">
+			<age>30</age>
+			<flag gender="M" />
+			<cname>Delta</cname>
+		</candidate>
+		<candidate cid="t" cparty="aap">
+			<age>30</age>
+			<flag gender="M" />
+			<cname>Theta</cname>
+		</candidate>
+	</candidate-list>
+
+</election>

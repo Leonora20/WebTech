@@ -1,0 +1,5 @@
+1. Inside which HTML element do we put the JavaScript? |a. <scripting> | b. <js> | c. <script> | 1
+2. What keyword is used to declare variables in javascript? |a. dim | b. var | c. string | 2
+3. What attribute is used to define a new namespace in html? |a. Xmlns | b. XmlNameSpace | c. XMLNS | 3
+4. Which of these tags are all <table> tags? |a. <table><tr><td> | b. <table><head><tfoot> | c. <table><body><tr> | 2
+5. How do I add scrolling text to my page? |a. <marquee> | b. <scroll> | c. <tab> | 1

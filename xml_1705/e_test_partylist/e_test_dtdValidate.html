@@ -1,0 +1,29 @@
+<html>
+  <head>
+      <title> Parse and Validate</title>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+
+        var xmlDoc;
+ 
+
+	xmlDoc= new ActiveXObject("Msxml2.DOMDocument.3.0");
+
+        xmlDoc.async = false;
+        xmlDoc.validateOnParse = true;
+
+	xmlDoc.load("e_test.xml");
+
+        document.write("<br/>code   : " + xmlDoc.parseError.errorCode);
+
+        document.write("<br/>reason : " + xmlDoc.parseError.reason);
+
+        document.write("<br/>line   : " + xmlDoc.parseError.line);
+
+        document.write("<br/>source : " + xmlDoc.parseError.srcText);
+   
+    </script>
+  </body>
+</html>

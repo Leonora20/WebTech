@@ -1,0 +1,19 @@
+body{
+	background-color: #D6EAF8;
+	text-align: center;
+}
+
+caption{
+	font-size: 160%;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  width: 50%;
+}
+
+.center{
+	margin-left: auto;
+	margin-right: auto;
+}

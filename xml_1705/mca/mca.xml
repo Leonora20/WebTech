@@ -1,0 +1,51 @@
+﻿<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href='ss.xml' ?>
+
+<mca xmlns="http://www.unigoa.ac.in/mca" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.unigoa.ac.in/mca mca.xsd"> 
+
+<student-list>
+  <student rollno="mca0701" >Vijay</student>
+  <student rollno="mca0902" >Raj</student>
+  <student rollno="mca0902" >Mithila</student>
+</student-list>
+
+<course-structure>
+   <semester   semno="1">
+      <course cid="CS11" ctype="core" ccredit="4">C Programming</course>
+      <course cid="BM12" ctype="core" ccredit="4">Bussiness Management</course>
+      <course cid="PL13" ctype="lab" ccredit="4">C Programming  Lab</course> 
+   </semester>
+   <semester   semno="2">
+       <course cid="CS21" ctype="core" ccredit="4">Data Structure</course>
+       <course cid="EL01" ctype="elective" ccredit="6" ></course>
+   </semester>
+   <semester   semno="6">
+       <project>Industry Project</project>
+   </semester>
+   <elective eid="E0001" >Advance Database System</elective>
+   <elective eid="E0002" >Compliler Contruction</elective>
+   <elective eid="E0002" >Image Processing</elective>
+</course-structure>
+
+<performance>
+   <student rollno="mca0701" >
+       <semester semno="1" spi="0.5" cpi="9.50" >
+             <course cid="CS11" cgrade="AB"/>
+             <course cid="PL13" cgrade="AA"/>
+       </semester>
+       <semester semno="2" spi="0" cpi="9.50" >
+             <course cid="CS21" cgrade="AB"/>
+             <course cid="EL01" eid="E0001"  cgrade="AA" />
+       </semester>
+       <semester semno="6" spi="0" cpi="9.50" >
+             <project pgrade="VeryGood"/>
+       </semester>
+   </student>
+   <student rollno="mca0903" >
+       <semester semno="1" spi="0" cpi="9.50" >
+            <course cid="CS11" cgrade="AA"/>
+       </semester>
+   </student>
+</performance>
+  
+</mca> 

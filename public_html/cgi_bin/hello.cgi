@@ -1,0 +1,10 @@
+#!/usr/bin/bash
+echo "content-type:text/html"
+echo ""
+echo "<html>"
+echo "<head>"
+echo "</head>"
+echo "<body>"
+echo "Hello World"
+echo "</body>"
+echo "</html>"

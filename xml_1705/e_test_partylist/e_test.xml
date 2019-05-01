@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<election xmlns="http://www.unigoa.ac.in/e_test" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.unigoa.ac.in/e_test e_test.xsd">
+
+	<party-list>
+		<party partyid="bjp">BJP</party>
+		<party partyid="con">Congress</party>
+		<party partyid="aap">Aam Aadmi</party>
+	</party-list>
+
+</election>

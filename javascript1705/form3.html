@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="style_form.css">
+		<title> Form </title>
+		
+		<script language="JavaScript">
+		function myFunction(event){
+		event.preventDefault();
+		
+		let flag = true;
+		var cell_content;
+		
+		var form = document.getElementById("form");
+		var name = form["name"].value;
+		var rollno = form["rollno"].value;
+		var year = form["year"].value;
+		var table=document.getElementById("table");
+		var row_data = document.getElementById("table").rows;
+		console.log(row_data); //for testing purpose
+		if(row_data.length==1){
+			var row = table.insertRow(-1);
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+			var cell3 = row.insertCell(2);
+			var cell4 = row.insertCell(3);
+			cell1.innerHTML = name;
+			cell2.innerHTML = rollno;
+			cell3.innerHTML = year;
+			cell4.innerHTML = getSelectedValues(document.getElementById("subject"));
+			
+		}else{
+			for(i = 1; i < row_data.length; i++){
+				
+				cell_content = row_data[i].cells[1].textContent;
+				console.log(rollno);  //for testing purpose
+				console.log(cell_content);  //for testing purpose
+				if(rollno == cell_content){
+						alert("Duplicate Entry of RollNo");
+						flag=true;
+						break;
+				} else{
+					flag = false;
+				}
+			}
+			
+			if(!flag){
+				var row = table.insertRow(-1);
+				var cell1 = row.insertCell(0);
+				var cell2 = row.insertCell(1);
+				var cell3 = row.insertCell(2);
+				var cell4 = row.insertCell(3);
+				cell1.innerHTML = name;
+				cell2.innerHTML = rollno;
+				cell3.innerHTML = year;
+				cell4.innerHTML = getSelectedValues(document.getElementById("subject"));
+			}
+		}
+		
+		}
+		
+		function getSelectedValues(select){
+		var result = [];
+		var options = select && select.options;
+		var opt;
+		for (var i=0; i<options.length; i++){
+			opt = options[i];
+			
+			if(opt.selected){
+			result.push(opt.value);
+				}
+			}
+			return result;
+		}
+		
+  </script>
+		
+	</head>
+	<body>
+		<form id="form">
+		  <label for="name"> Name </label>
+		  <input type="text" name="name" class="name" id="name" required>
+		  <label for="RollNo"> RollNo </label>
+		  <input type="text" name="rollno" class="rollno" id="rollno" required>
+		  <label for="year" class="year"> Year </label>
+		  <input type="radio" name="year" value="1" checked> 1st Year
+		  <input type="radio" name="year" value="2"> 2nd Year
+		  <input type="radio" name="year" value="3"> 3rd Year 
+		  <label for="subject" class="subject"> Subjects </label>
+		  <select name="subject" size="4" multiple class="subject" id="subject">
+			  <option value="WebTech">WebTech</option>
+			  <option value="IoT">IoT</option>
+			  <option value="SoftEngg">SoftEngg</option>
+			  <option value="Graphics">Graphics</option>
+		  </select>
+		  <input type="submit" onclick="myFunction(event);">
+		</form>		
+		
+		<table id="table">
+		  <tr>
+			<th> Name </th>
+			<th> RollNo </th>
+			<th> Year </th>
+			<th> Subjects </th>
+		  </tr>
+		</table>	
+	</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="form_style.css" />
+	<title> Form2 </title>
+	<script language="JavaScript">
+	
+	//Form version:2
+	
+	var myWindow;
+	
+    function myFunction(event) {
+	  event.preventDefault();
+	  if(!myWindow){
+	  myWindow = window.open("output.html","Window","width=200,height=100");
+	}
+	else
+	{
+	  update();
+	}
+	}
+	
+	function update()
+	{
+	var form = document.getElementById("myForm");
+	  var name = form["name"].value;
+	  var rollno = form["rollno"].value;
+	  var year = form["year"].value;
+	  var table = myWindow.document.getElementById("myTable");
+	  var row = table.insertRow(-1);
+	  var cell1 = row.insertCell(0);
+	  var cell2 = row.insertCell(1);
+	  var cell3 = row.insertCell(2);
+	  var cell4 = row.insertCell(3);
+	  cell1.innerHTML = name;
+	  cell2.innerHTML = rollno;
+	  cell3.innerHTML = getSelectValues(document.getElementById("subject"));
+	  cell4.innerHTML = year;
+	}
+
+	function getSelectValues(select) {
+	  var result = [];
+	  var options = select && select.options;
+	  var opt;
+
+	  for (var i=0; i<options.length; i++) {
+		opt = options[i];
+
+		if (opt.selected) {
+		  result.push(opt.value);
+		}
+	  }
+	  return result;
+	}
+    </script>
+</head>
+<body>
+<form id="myForm" action="/output.html">
+  <label for="name" class="name">Name:</label>
+  <input type="text" name="name" id="name" required>
+  <label for="rollno" class="rollno">RollNo:</label>
+  <input type="text" name="rollno" id="rollno" required>
+  <label for="subject" class="subject">Subject:</label>
+  <select name="subject" multiple id="subject">
+  <option value="Webtech">WebTech</option>
+  <option value="SoftwareEng">SoftwareEng</option>
+  <option value="IoT">IoT</option>
+  <option value="Graphics">Graphics</option>
+  </select>
+  <label for="year" class="year" id="year">Year:</label>
+  <input type="radio" name="year" value="FY">First Year
+  <input type="radio" name="year" value="SY">Second Year
+  <input type="radio" name="year" value="TY">Third Year 
+  
+  <input type="submit" value="Submit" onclick="myFunction(event)">
+</form>
+
+</body>
+</html>

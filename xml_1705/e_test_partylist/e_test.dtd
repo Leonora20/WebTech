@@ -1,0 +1,5 @@
+<!ELEMENT election ( party-list)>
+
+<!ELEMENT party-list ( party+ )>
+<!ELEMENT party (#PCDATA)>
+<!ATTLIST party partyid CDATA  #REQUIRED>

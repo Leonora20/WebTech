@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<election xmlns="http://www.unigoa.ac.in/e_test2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.unigoa.ac.in/e_test2 e_test2.xsd">
+
+	<constituency-list>
+		<constituency conid="ng" voters="515441">
+			<name gid="ma">Mandrem</name>
+			<name gid="pe">Pernem</name>
+			<name gid="bi">Bicholim</name>
+			<name gid="ti">Tivim</name>
+			<name gid="mp">Mapusa</name>
+			<name gid="si">Siolim</name>
+			<name gid="sa">Saligao</name>
+			<name gid="ca">Canlagute</name>
+			<name gid="po">Porvorim</name>
+			<name gid="al">Aldona</name>
+		</constituency>	
+		<constituency conid="sg" voters="545336">
+			<name gid="pn">Ponda</name>
+			<name gid="sh">Shiroda</name>
+			<name gid="mc">Marcaim</name>
+			<name gid="mr">Marmugao</name>
+			<name gid="vg">Vasco-Da-Gama</name>
+			<name gid="co">Cortalim</name>
+			<name gid="nu">Nuvem</name>
+			<name gid="da">Dabolim</name>
+			<name gid="cu">Curtorim</name>
+			<name gid="fa">Fatorda</name>
+		</constituency>	
+	</constituency-list>
+
+</election>

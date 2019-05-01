@@ -1,0 +1,40 @@
+﻿<html>
+  <head>
+      <title> Parse and Validate</title>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+
+        var xmlDoc;
+ 
+
+	xmlDoc= new ActiveXObject("Msxml2.DOMDocument.6.0");
+        var SchemaCache = new ActiveXObject("Msxml2.XMLSchemaCache.6.0");
+
+        xmlDoc.async = false;
+        xmlDoc.validateOnParse = false;
+
+        document.write("<br/>before add ");
+        SchemaCache.add("http://www.unigoa.ac.in/e_test3", "e_test3.xsd");
+        xmlDoc.schemas = SchemaCache;
+        document.write("<br/>after add");
+
+
+        document.write("<br/>before load");
+	xmlDoc.load("e_test3.xml");
+        document.write("<br/>after load");
+        
+        var err = xmlDoc.validate();
+         
+        document.write("<br/>code   : " + err.errorCode);
+        document.write("<br/>reason : " + err.reason);
+        document.write("<br/>line   : " + err.line);
+        document.write("<br/>text   : " + err.srcText);
+        
+    
+        document.write("<br/>" + xmlDoc.documentElement.namespaceURI);
+  
+    </script>
+  </body>
+</html>

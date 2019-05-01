@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+p.rtl {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+}
+
+.fadeIn{
+    opacity: 0.6;
+}
+.fadeIn:hover{
+    opacity: 1;
+    transition: 1s;
+}
+
+
+div.hidden_chrome > h2{
+    visibility: visible;
+}
+
+div.hidden_chrome > img{
+   /* visibility: hidden;
+   */
+   
+}
+
+div.hidden_chrome:hover img{
+    /*visibility:visible;*/
+}
+</style>
+
+
+</head>
+<body>
+
+<h1>The direction Property</h1>
+
+<p>This text goes from left to right. This is default.</p>
+
+<p class="rtl">This text goes from right to left.</p>
+
+<img class="fadeIn" src="chrome.jpg"/>
+
+<div class="hidden_chrome">
+    <h2>Chrome (Hover here to view image)</h2>
+    <img src="chrome.jpg"/>
+</div>
+
+</body>
+</html>

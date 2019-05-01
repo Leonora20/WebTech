@@ -1,0 +1,28 @@
+<!ELEMENT election ( party-list, candidate-list, constituency-list)>
+
+<!ELEMENT party-list ( party+ )>
+<!ELEMENT party (#PCDATA)>
+<!ATTLIST party partyid CDATA  #REQUIRED>
+
+<!ELEMENT candidate-list ( candidate+ )>
+
+<!ELEMENT candidate ( age, flag, cname )>
+<!ATTLIST candidate 
+cid CDATA #REQUIRED
+cparty CDATA #REQUIRED
+>
+
+<!ELEMENT age (#PCDATA)>
+<!ELEMENT cname (#PCDATA)>
+<!ELEMENT flag EMPTY>
+<!ATTLIST flag gender (M | F) "M" >
+
+<!ELEMENT constituency-list ( constituency+ )>
+<!ATTLIST constituency 
+conid CDATA #REQUIRED
+voters CDATA #REQUIRED
+>
+
+<!ELEMENT constituency (name+)>
+<!ELEMENT name (#PCDATA)>
+<!ATTLIST name gid CDATA  #REQUIRED>

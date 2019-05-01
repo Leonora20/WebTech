@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+.fadeIn{
+    opacity: 0.6;
+}
+.fadeIn:hover{
+    opacity: 1;
+    transition: 1s;
+}
+
+
+div.hidden_chrome{
+    visibility: visible;
+}
+
+div.hidden_img > img{
+   /* visibility: hidden;
+   */
+   
+}
+
+div.hidden_chrome:hover img{
+    /*visibility:visible;*/
+}
+</style>
+
+
+</head>
+<body>
+
+<img class="fadeIn" src="twitter.png"/>
+
+<div class="hidden_img">
+    <h2>Hover here to view image</h2>
+    <img src="twitter.png"/>
+</div>
+
+</body>
+</html>

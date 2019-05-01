@@ -1,0 +1,176 @@
+﻿<?xml version="1.0"?> 
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.unigoa.ac.in/mca"            xmlns="http://www.unigoa.ac.in/mca" elementFormDefault="qualified">
+ 
+<!-- studentListType+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+  <xs:simpleType name="rollNoType"> 
+      <xs:restriction  base="xs:string">
+                <xs:pattern value="mca[0-9]{4}"/> 
+      </xs:restriction> 
+  </xs:simpleType>
+
+  <xs:complexType name="studentType">
+       <xs:simpleContent> 
+                 <xs:extension base="xs:string"> 
+                           <xs:attribute name="rollno" type="rollNoType" use="required" /> 
+                 </xs:extension> 
+        </xs:simpleContent>
+  </xs:complexType>  
+
+  <xs:complexType name="studentListType"> 
+         <xs:sequence> 
+                 <xs:element name="student" type="studentType" minOccurs="0" maxOccurs="unbounded" />  
+         </xs:sequence> 
+  </xs:complexType> 
+
+<!-- courseStructureType++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+  <xs:simpleType name="courseIdType"> 
+      <xs:restriction base="xs:string">
+                <xs:pattern value="CS[0-9]{2}|PL[0-9]{2}|BM[0-9]{2}|MT[0-9]{2}|EL[0-9]{2}"/> 
+      </xs:restriction> 
+  </xs:simpleType>
+
+  <xs:simpleType name="courseTypeType"> 
+      <xs:restriction base="xs:string"> 
+                <xs:enumeration value="core"/> 
+                <xs:enumeration value="lab"/> 
+                <xs:enumeration value="elective"/> 
+       </xs:restriction> 
+  </xs:simpleType>
+
+  <xs:simpleType name="coursCreditType"> 
+      <xs:restriction base="xs:integer"> 
+                <xs:enumeration value="2"/> 
+                <xs:enumeration value="4"/> 
+                <xs:enumeration value="6"/> 
+       </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="courseType">
+       <xs:simpleContent> 
+                 <xs:extension base="xs:string"> 
+                           <xs:attribute name="cid" type="courseIdType" use="required"/>
+                          <xs:attribute name="ctype" type="courseTypeType" use="required"/>
+                           <xs:attribute name="ccredit" type="coursCreditType" use="required"/>
+                 </xs:extension> 
+        </xs:simpleContent>  
+  </xs:complexType>
+ 
+  <xs:simpleType name="semNoType"> 
+       <xs:restriction base="xs:integer"> 
+                <xs:pattern value="1|2|3|4|5|6"/> 
+       </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="semesterType"> 
+       <xs:choice>
+               <xs:sequence> 
+                          <xs:element name="course" type="courseType" minOccurs="0" maxOccurs="8"/>
+               </xs:sequence>
+               <xs:element name="project" type="xs:string" />
+     </xs:choice>
+     <xs:attribute name="semno" type="semNoType" use="required" />
+  </xs:complexType> 
+
+  <xs:simpleType name="electiveIdType"> 
+      <xs:restriction base="xs:string">
+                <xs:pattern value="E[0-9]{4}"/> 
+      </xs:restriction> 
+  </xs:simpleType>
+
+  <xs:complexType name="electiveType">
+       <xs:simpleContent> 
+                 <xs:extension base="xs:string"> 
+                           <xs:attribute name="eid" type="electiveIdType" use="required"/>
+                 </xs:extension> 
+        </xs:simpleContent>  
+  </xs:complexType>
+
+  <xs:complexType name="courseStructureType"> 
+         <xs:sequence> 
+              <xs:element name="semester" type="semesterType" minOccurs="0" maxOccurs="6"/>
+              <xs:element name="elective" type="electiveType"  minOccurs="0" maxOccurs="unbounded"  />  
+         </xs:sequence> 
+  </xs:complexType>
+
+<!-- performanceType+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <xs:simpleType name="piType"> 
+      <xs:restriction base="xs:decimal"> 
+             <xs:minInclusive   value="0" /> 
+             <xs:maxInclusive   value="10.00" /> 
+             <xs:fractionDigits value="2" />  
+       </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="projectGradeType"> 
+      <xs:restriction base="xs:string"> 
+            <xs:pattern value="Excellent|VeryGood|Good|Satisfactory|Fail"/> 
+       </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="projectPerfType">
+          <xs:attribute name="pgrade" type="projectGradeType" use="required"/>
+  </xs:complexType>
+
+  <xs:simpleType name="courseGradeType"> 
+      <xs:restriction base="xs:string"> 
+                <xs:pattern value="AA|AB|BB|BC|CC|CD|DD|EE|FF|II"/> 
+       </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="coursePerfType">
+          <xs:attribute name="cid" type="courseIdType" use="required"/>
+          <xs:attribute name="cgrade" type="courseGradeType" use="required"/>
+          <xs:attribute name="eid"  type="electiveIdType" />
+  </xs:complexType>
+
+  <xs:complexType name="semesterPerfType">
+         <xs:choice>
+               <xs:sequence> 
+                       <xs:element name="course" type="coursePerfType" minOccurs="0" maxOccurs="8"/>
+               </xs:sequence>
+               <xs:element name="project" type="projectPerfType" />
+         </xs:choice>   
+         <xs:attribute name="semno" type="semNoType" use="required"/>
+         <xs:attribute name="spi" type="piType" use="required" />
+         <xs:attribute name="cpi" type="piType" use="required" /> 
+  </xs:complexType> 
+
+  <xs:complexType name="studentPerfType"> 
+         <xs:sequence> 
+                       <xs:element name="semester" type="semesterPerfType" minOccurs="0" maxOccurs="6"/>
+         </xs:sequence>
+         <xs:attribute name="rollno" type="rollNoType" use="required"/> 
+  </xs:complexType> 
+
+  <xs:complexType name="performanceType"> 
+         <xs:sequence> 
+               <xs:element name="student" type="studentPerfType" minOccurs="0" maxOccurs="unbounded"/> 
+         </xs:sequence>
+  </xs:complexType> 
+
+<!-- mcaElement+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+  <xs:element name="mca"> 
+         <xs:complexType> 
+                 <xs:sequence> 
+                        <xs:element name="student-list" type="studentListType"/>                    
+                        <xs:element name="course-structure" type="courseStructureType"/> 
+                        <xs:element name="performance" type="performanceType"/> 
+                  </xs:sequence>
+         </xs:complexType>
+                           
+         <xs:key name="keyRollNo">
+                  <xs:selector xpath="student-list/student"/>
+                  <xs:field xpath="@rollno"/>
+         </xs:key>
+         <xs:keyref name="refKeyRollNo"  refer="keyRollNo">
+                  <xs:selector xpath="performance/student"/>
+                  <xs:field xpath="@rollno"/>
+         </xs:keyref>  
+        
+  </xs:element>
+
+</xs:schema> 

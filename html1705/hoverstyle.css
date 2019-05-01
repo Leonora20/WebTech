@@ -1,0 +1,15 @@
+#text{
+	width:50%;
+	height: 50%;
+	background-color: yellow;
+}
+
+#text:hover ~ #pic img{
+	transform: translate(0px,0px);
+}
+
+#pic img{
+	transform: translate(-900px,0px);
+	width: 200px;
+	transition: transform 1s linear;
+}

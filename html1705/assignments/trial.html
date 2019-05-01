@@ -1,0 +1,38 @@
+<html>
+    <head>
+    <title>Film info</title>
+	<script language="JavaScript">
+	
+	var tickets=new Array();
+
+	function save(){
+		var ticketsValue = document.getElementById('tickets').value;
+		tickets[tickets.length]=ticketsValue;
+		}
+
+	function show() {
+	  var content="<b>All Elements of the Arrays :</b><br>";
+	  for(var i = 0; i < tickets.length; i++) {
+      content +=tickets[i]+"<br>";
+	  }
+	  document.getElementById('display').innerHTML = content;
+	  }
+	</script>
+    </head>
+        <body>
+        <form id="form">
+            <h1><b>Please enter data</b></h1>
+        <hr size="3"/>
+        <br>
+            <label for="tickets">tickets</label><input id="tickets" type="text" />
+        <br>
+        <br>
+            <input type="button" value="Save" onclick="save();">
+            <input type="button" value="Show data" onclick="show();"> <br>
+            <h2><b>Data:</b></h2>
+        <hr>
+        </form>
+        <div id="display">
+            </div>
+        </body>
+</html>

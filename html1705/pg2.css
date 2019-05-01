@@ -1,0 +1,12 @@
+h1{
+	color: red;
+    font-family: courier;
+    font-size: 10em;
+	float: right;
+}
+
+.resize{
+	height: 40em;
+	width: 40em;
+	float: left;
+}

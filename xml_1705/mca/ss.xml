@@ -1,0 +1,168 @@
+﻿<xsl:stylesheet version='1.0' 
+          xmlns:xsl='http://www.w3.org/1999/XSL/Transform'
+          xmlns:my="http://www.unigoa.ac.in/mca" > 
+
+<xsl:template match="/">
+
+   <!-- Save Roll number and semester of marksheet -->
+
+   <xsl:variable name="vrollno" >mca0701</xsl:variable> 
+   <xsl:variable name="vsemno" >2</xsl:variable>
+
+   <html>
+
+       <head>
+	          <title>XSLT Example</title>
+	   </head>
+       
+       <body>
+   
+         <div style="text-align:center">
+
+            <!-- Print University, Department and Degree name -->
+
+            <h1>Goa University</h1>
+            <h2>Department of Computer Science &amp; Technology</h2>
+            <h3>Master of Computer Application</h3>
+            <br/>
+
+            <div style="text-align:left;width:100%">
+            <table style="text-align:left;width:100%">
+               
+               <!-- Print semster number -->
+               <tr>
+                  <td style="width:15%"><h4>Semester</h4></td>
+                  <td style="width:5%"><h4>:</h4></td>
+                  <td style="width:80%"><h4><xsl:value-of select="$vsemno"/></h4></td> 
+               </tr>
+
+               <!-- Print Roll number -->
+               <tr>
+                  <td><h4>Roll No</h4></td>
+                  <td><h4>:</h4></td>
+                  <td><h4><xsl:value-of select="$vrollno"/></h4></td>
+               </tr>
+
+              <!-- Print Student name -->
+               <tr>
+                  <td><h4>Name</h4></td>  
+                  <td><h4>:</h4></td>
+                  <td><h4><xsl:value-of select="my:mca/my:student-list/my:student[@rollno=$vrollno]"/></h4></td> 
+               </tr>
+
+           </table>
+           </div>
+
+           <!-- Table of all grades -->
+           <table style="border: solid black 2px;width:100%;border-collapse:collapse" >
+
+               <!-- Print headers -->
+               <tr>
+                   <th style="width:20%">Course ID</th>
+                   <th style="width:70%">Course Name</th>
+                   <th style="width:30%">Grade</th>
+               </tr>
+ 
+               <!-- Print grade of each paper answered -->          
+               <xsl:for-each select="my:mca/my:performance/my:student[@rollno=$vrollno]/my:semester[@semno=$vsemno]/my:course"> 
+                     <xsl:call-template name="printCGrade"/> 
+               </xsl:for-each> 
+
+               <!-- Print SPI -->       
+               <tr>
+
+                   <td style="text-align:right" colspan="2">
+                       Semester Performance Index:
+                   </td>
+
+                   <td style="text-align:center">
+                       <xsl:value-of select="format-number(my:mca/my:performance/my:student[@rollno=$vrollno]/my:semester[@semno=$vsemno]/@spi,'###0.00##')" />
+                   </td>
+
+               <!-- Print CPI -->
+               </tr> 
+
+               <tr>
+
+                   <td style="text-align:right" colspan="2">
+                       Cummulative Performance Index:
+                   </td>
+                   
+                   <td style="text-align:center">
+                       <xsl:value-of select="format-number(my:mca/my:performance/my:student[@rollno=$vrollno]/my:semester[@semno=$vsemno]/@cpi,'###0.00##')" />
+                   </td>
+
+               </tr>
+
+           </table> 
+           <br/>
+           <br/>
+ 
+           <!-- Print footer information -->
+           <table style="width:100%; text-align:center">
+
+              <tr>
+                  <th style="width:33%">Head, DCST</th>
+                  <th style="width:33%">COE</th>
+                  <th style="width:34%">Registar</th>
+             </tr>
+
+             <tr>
+                  <th style="width:33%">Goa University</th>
+                  <th style="width:33%">Goa University</th>
+                  <th style="width:34%">Goa University</th>
+             </tr>
+
+           </table>
+
+         </div>
+      </body>
+
+   </html>   
+   
+</xsl:template> 
+
+
+<!-- Template for priting grade of each paper -->
+<xsl:template name="printCGrade">
+
+     <!-- Save course id of current paper -->
+     <xsl:variable name="vcid" >
+          <xsl:value-of select="@cid" />
+     </xsl:variable>
+
+     <tr>
+
+         <!-- Print Course id -->
+         <td style="border: solid black 2px;text-align:center">
+               <xsl:value-of select="@cid" />
+         </td>
+  
+         <!-- Print course title (non elective|elective) -->
+         <td style="border: solid black 2px; text-align:left">
+
+               <!-- Print non elective title -->
+               <xsl:if test="not(@eid)" >
+                      <xsl:value-of select="/my:mca/my:course-structure/my:semester/my:course[@cid=$vcid]" />
+               </xsl:if>
+
+               <!-- Print elective title -->
+               <xsl:if test="@eid" >
+                      <xsl:variable name="veid" >
+                           <xsl:value-of select="@eid" />
+                      </xsl:variable>
+                      <xsl:value-of select="/my:mca/my:course-structure/my:elective[@eid=$veid]" />
+               </xsl:if>
+
+         </td>  
+
+         <!-- Print course grade -->
+         <td style="border: solid black 2px;text-align:center">
+               <xsl:value-of select="@cgrade" />
+         </td>
+
+     </tr>
+       
+</xsl:template> 
+
+</xsl:stylesheet> 

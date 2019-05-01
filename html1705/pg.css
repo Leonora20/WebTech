@@ -1,0 +1,16 @@
+@media only screen and (max-width: 800px) {
+  .resize {
+    float: top;
+  }
+}
+
+h1{
+	color: red;
+    font-family: courier;
+    font-size: 10vw;
+}
+
+.resize{
+	height: 40vw;
+	width: 40vw;
+}

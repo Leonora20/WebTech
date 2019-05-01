@@ -1,0 +1,13 @@
+.name , .rollno, .subject , .submit , .year , .subject{
+	display: block;
+}
+
+table,th,td{
+	border: 1px solid black;
+	border-collapse : collapse;
+}
+
+th,td{
+	padding-left :25px;
+	padding-right : 25px;
+}

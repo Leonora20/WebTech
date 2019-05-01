@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="search2.css"/>
+    <title>v2</title>
+</head>
+<body>
+
+    <h1> String Matching</h1>
+
+    <p id="data">
+            Google IS Is is an American multinational technology company that specializes in Internet-related services and products, which include online advertising technologies, search engine, cloud computing, software, and hardware. It is considered one of the Big Four technology companies, along with Amazon, Apple and Facebook.
+    </p>
+
+    
+    <form action="#" onsubmit="search()">
+        <div>
+                <input type="checkbox" name="boundary" /> Word Boundary
+    
+                <input type="checkbox" name="case" /> Case Search
+        </div>
+        
+
+        <input type="text" id="searchString" />
+        <input type="submit" value="Search" name="button" />
+    </form>
+
+    <script>
+        var data=document.getElementById("data").innerHTML.toString();
+            console.log("data->"+data);
+        function search(){
+            var searchString=document.getElementById("searchString").value;
+            console.log("searchString->"+searchString);
+            if(searchString){
+                findMatch(searchString);
+            }
+        }
+        
+        function findMatch(searchString){
+            var newData="";
+            var replica=data;
+            do {
+                var position = replica.search(searchString);
+                console.log("position:" + position);
+                if (position != -1) {
+                    console.log("position:" + position);
+                    var result = replica.substr(position, searchString.length);
+                    console.log("result" + result);
+                    var start = replica.slice(0, position);
+                    console.log("start:" + start + ".");
+                    var match = replica.slice(position, position + searchString.length);
+                    console.log("match:" + match);
+                    var end = replica.slice(position + searchString.length, position + data.length);
+                    console.log("end:" + end);
+                    replica=end;
+                    
+                    
+                        newData=newData+start+"<span class='highlight'>" + match+ "</span>";
+            
+                }
+            }while(position != -1);
+			if(end)
+				document.getElementById("data").innerHTML = newData+end;
+			else
+				document.getElementById("data").innerHTML = replica;
+       
+         /*   var pattern =new RegExp("("+searchString+")","gi");
+            var new_text=data.replace(pattern, "<span class='highlight'>"+searchString+"</span>");
+            document.getElementById("data").innerHTML=new_text;
+          */  
+        }
+    </script>
+
+</body>
+</html>

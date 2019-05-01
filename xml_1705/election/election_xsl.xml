@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+
+<!--<!DOCTYPE election SYSTEM "election.dtd">-->
+
+<election xmlns="http://www.unigoa.ac.in/election_xsl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.unigoa.ac.in/election_xsl election_xsl.xsd">
+
+	<party-list>
+		<party partyid="bjp">BJP</party>
+		<party partyid="con">Congress</party>
+		<party partyid="aap">Aam Aadmi</party>
+	</party-list>
+
+	<candidate-list>
+		<candidate cid="a" partyid="bjp" conid="ng">
+			<age>30</age>
+			<flag gender="M" />
+			<cname>Alpha</cname>
+		</candidate>
+		<candidate cid="b" partyid="con" conid="ng">
+			<age>30</age>
+			<flag gender="M" />
+			<cname>Beta</cname>
+		</candidate>
+		<candidate cid="z" partyid="aap" conid="ng">
+			<age>30</age>
+			<flag gender="M" />
+			<cname>Zeta</cname>
+		</candidate>
+		<candidate cid="e" partyid="bjp" conid="sg">
+			<age>30</age>
+			<flag gender="M" />
+			<cname>Epsilon</cname>
+		</candidate>
+		<candidate cid="d" partyid="con" conid="sg">
+			<age>30</age>
+			<flag gender="M" />
+			<cname>Delta</cname>
+		</candidate>
+		<candidate cid="t" partyid="aap" conid="sg">
+			<age>30</age>
+			<flag gender="M" />
+			<cname>Theta</cname>
+		</candidate>
+	</candidate-list>
+
+	<constituency-list>
+		<constituency conid="ng" voters="515441">
+			<name gid="ma">Mandrem</name>
+			<name gid="pe">Pernem</name>
+			<name gid="bi">Bicholim</name>
+			<name gid="ti">Tivim</name>
+			<name gid="mp">Mapusa</name>
+			<name gid="si">Siolim</name>
+			<name gid="sa">Saligao</name>
+			<name gid="ca">Canlagute</name>
+			<name gid="po">Porvorim</name>
+			<name gid="al">Aldona</name>
+		</constituency>	
+		<constituency conid="sg" voters="545336">
+			<name gid="pn">Ponda</name>
+			<name gid="sh">Shiroda</name>
+			<name gid="mc">Marcaim</name>
+			<name gid="mr">Marmugao</name>
+			<name gid="vg">Vasco-Da-Gama</name>
+			<name gid="co">Cortalim</name>
+			<name gid="nu">Nuvem</name>
+			<name gid="da">Dabolim</name>
+			<name gid="cu">Curtorim</name>
+			<name gid="fa">Fatorda</name>
+		</constituency>	
+	</constituency-list>
+
+	<polls>
+		<con-result conid="ng">
+			<region-votes partyid="bjp" cid="a">200000</region-votes>
+			<region-votes partyid="con" cid="b">150000</region-votes>
+			<region-votes partyid="aap" cid="z">165000</region-votes>
+		</con-result>
+		<con-result conid="sg">
+			<region-votes partyid="bjp" cid="e">150000</region-votes>
+			<region-votes partyid="con" cid="d">200000</region-votes>
+			<region-votes partyid="aap" cid="t">195000</region-votes>
+		</con-result>
+	</polls>
+
+</election>
